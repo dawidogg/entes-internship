@@ -1,0 +1,3 @@
+# ENTES Internship
+
+During my internship at ENTES Elektronik, I did research on Bluetooth Human Interface Device profile and implemented a Bluetooth keyboard on an ESP32 microcontroller. The project provided here is a fork of `esp_hid_device` example which comes with Espressif IoT Development Framework (ESP-IDF). My code implements typing strings of characters on the connected device and can be used for logging and debugging. 
