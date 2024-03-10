@@ -82,7 +82,7 @@ static esp_hid_device_config_t bt_hid_config = {
   .vendor_id          = 0x16C0,
   .product_id         = 0x05DF,
   .version            = 0x0100,
-  .device_name        = "PS/2 Klavye",
+  .device_name        = "ChatGPT",
   .manufacturer_name  = "Entes",
   .serial_number      = "1234567890",
   .report_maps        = bt_report_maps,
@@ -321,25 +321,17 @@ static void bt_hidd_event_callback(void *handler_args, esp_event_base_t base, in
     return;
 }
 
-const char *example_freertos =
-  "Guru Meditation Error: Core  1 panic'ed (LoadProhibited). Exception was unhandled.\n"
-  "Core 1 register dump:\n"
-  "PC      : 0x400d5652\n"  
-  "PS      : 0x00060130\n"  
-  "A0      : 0x800d1537\n"  
-  "A1      : 0x3ffb1ee0\n"   
-  "A2      : 0x3ffc10cc\n" 
-  "A3      : 0x00000001\n" 
-  "A4      : 0x3ffb1eed\n";
+const char *example_denis = "Merhaba Denis! Hindistan'ı yöneterek zengin kültürü ve ekonomik potansiyeli bir araya getireceksiniz. Ben ChatGPT, her adımınızda size destek olacağım. Başarılar ve eğlenceli bir oyun dilerim!\n";
 
-static const char example_turk[] = "Türkçe ğüşiöç ĞÜŞİÖÇ ıI iİ. `1234567890-=[]\\;',./~!@#$%^&*()_+{}|:\"<>?\n";
+const char *example_bilge = "Merhaba Bilge! AB'nin entegre birliğini ve küresel etkisini yönetmek heyecan verici. Ben ChatGPT, başarınız için buradayım. Başarılar ve keyifli bir oyun geçirmeniz dileğiyle!\n";
 
-static const char example_entes[] = "ENTES Elektronik Cihazlar İmalat ve Ticaret A.Ş. Dudullu OSB, 1. Cadde, No:23 34776, Ümraniye, İstanbul +90 (216) 313 0110 https://www.entes.com.tr/\n";
+const char *example_berat = "Merhaba Berat! Brezilya'nın doğal güzelliklerini ve ekonomik potansiyelini keşfetmek harika olacak. Ben ChatGPT olarak yanınızdayım. Bol şans ve keyifli bir oyun dilerim!\n";
 
-static const char example_compile[] = "[4/10] Building C object esp-idf/main/...idf_main.dir/esp_hid_device_main.c.obj\n"
-" /home/dawidogg/Embedded/Projects/PS2_BT/main/esp_hid_device_main.c: In function 'key_print':\n"
-"/home/dawidogg/Embedded/Projects/PS2_BT/main/esp_hid_device_main.c:354:25: warning: passing argument 1 of 'hid_send_string' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]\n"
-  "354 | hid_send_string(example_freertos);\n";
+const char *example_eda = "Merhaba Eda! ABD'nin güçlü ekonomisini ve çeşitliliğini yönetmek harika bir fırsat. Ben ChatGPT olarak stratejilerinizde size yardımcı olacağım. Kazanmak için en iyisi olun!\n";
+
+const char *example_kavraz = "Merhaba Kavraz! Çin'in yükselen gücünü ve zengin kültürünü yönetmek muhteşem olacak. Ben ChatGPT olarak sizinle birlikteyim. Zaferlerle dolu bir oyun dilerim!\n";
+
+const char *example_semih = "Merhaba Semih! Rusya'nın stratejik önemini ve çeşitli kaynaklarını yönetmek büyük bir sorumluluk. Ben ChatGPT, size her adımda rehberlik edeceğim. İyi şanslar ve harika bir oyun geçirmeniz dileğiyle!\n";
 
 // Reading keys
 const int key_pin[] = {13, 12, 14, 27, 26, 25, 33, 32, 22};
@@ -358,10 +350,12 @@ void key_print(void *arg) {
   while (1) {
     if (ulTaskNotifyTake(pdTRUE, portMAX_DELAY)) {
       switch (key_data) {
-      case 0x81: hid_send_string(example_freertos); break;
-      case 0x82: hid_send_string(example_turk); break;
-      case 0x84: hid_send_string(example_entes); break;
-      case 0x88: hid_send_string(example_compile); break;
+      case 0x81: hid_send_string(example_berat); break;
+      case 0x82: hid_send_string(example_bilge); break;
+      case 0x84: hid_send_string(example_denis); break;
+      case 0x88: hid_send_string(example_eda); break;
+      case 0x90: hid_send_string(example_kavraz); break;
+      case 0xa0: hid_send_string(example_semih); break;
       default: hid_send_ascii_char((char)key_data); break;
       }
       vTaskDelay(200 / portTICK_PERIOD_MS);
